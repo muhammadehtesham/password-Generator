@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create | Password</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+    <style>
+        * {
+            margin: 0px;
+            padding: 0px;
+            box-sizing: border-box;
+        }
+
+        .container {
+            background: linear-gradient(180deg, #81ffc5 0%, #48a8e2 100%);
+            background-repeat: no-repeat;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-size: 18px;
+            box-shadow: 0px 16px 118px 58px #47aba8 inset;
+
+        }
+
+        .wrapper {
+            width: 700px;
+            min-height: 400px;
+            /* border: 2px solid red; */
+            padding: 45px 40px;
+            background-color: rgba(214, 214, 214, 0.1);
+            box-shadow: 0px 0px 16px 4px #47aba8 inset;
+            display: flex;
+            flex-direction: column;
+            row-gap: 49px;
+        }
+
+        h1 {
+            color: #5f5f5f;
+        }
+
+        span {}
+
+        .showcase {
+            width: 100%;
+            box-shadow: 0px 0px 10px -3px #47aba8;
+            display: flex;
+            justify-content: space-between;
+            padding: 16px 13px;
+            color: #5f5f5f;
+        }
+
+
+        .showcase input {
+            font-size: 21px;
+            border: none;
+            outline: none;
+            width: 80%;
+            /* padding: 1px 0px; */
+            background: transparent;
+        }
+
+
+        .generate-btn {
+            padding: 15px 11px;
+            box-shadow: 0px 0px 10px -3px #47aba8;
+            width: 33%;
+            color: #5f5f5f;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="wrapper">
+            <h1>Generate a <br> <span>Random Password</span></h1>
+            <div class="showcase">
+                <input type="text" id="password" placeholder="password">
+                <i class="fa-regular fa-copy" onclick="copyFunction()"></i>
+            </div>
+            <!-- generate button  -->
+            <div class="generate-btn" onclick="createPassword()">
+                <i class="fa-solid fa-bolt-lightning"></i>&nbsp;&nbsp;
+                Generate Password
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        const passwordBox= document.getElementById("password");
+        const length= 12;
+
+        const uppercase="ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        const lowercase="abcdefghijklmnopqrstuvwxyz";
+        const number="0123456789";
+        const symbol="!@#$%^&*()-=_+[]{}|:<>?";
+        const AllChar= uppercase + lowercase + number + symbol;
+ 
+
+        function createPassword() {
+            let password= "";
+            password += uppercase[Math.floor(Math.random() *uppercase.length)];
+            password += lowercase[Math.floor(Math.random() *lowercase.length)];
+            password += number[Math.floor(Math.random() *number.length)];
+            password += symbol[Math.floor(Math.random() *symbol.length)];
+            
+
+            while (length > password.length) {
+                password += AllChar[Math.floor(Math.random()*AllChar.length)]
+            }
+            passwordBox.value=password;
+            // console.log(password);
+        }
+
+
+        // copy function 
+
+        function copyFunction() {
+            passwordBox.select();
+            document.execCommand("copy");
+        }
+
+    </script>
+</body>
+
+</html>
